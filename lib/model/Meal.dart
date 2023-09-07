@@ -15,12 +15,15 @@ class Meal {
     required this.id,
   });
 
-  static Future<List<Meal>> fetchData() async {
-    String uri = "https://www.themealdb.com/api/json/v1/1/categories.php";
+  static Future<List<Meal>> fetchData(String receipe) async {
+    //https://www.themealdb.com/api/json/v1/1/search.php?s=
+    //https://www.themealdb.com/api/json/v1/1/categories.php
+    String uri =
+        "https://www.themealdb.com/api/json/v1/1/search.php?s=${receipe}";
     var url = Uri.parse(uri);
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      List jsonResponse = json.decode(response.body)['categories'];
+      List jsonResponse = json.decode(response.body)['meals'];
       return jsonResponse.map((e) => Meal.fromJson(e)).toList();
     } else {
       throw Exception('Unexpected error occured!');
@@ -62,10 +65,10 @@ class Meal {
 
   factory Meal.fromJson(Map<String, dynamic> map) {
     return Meal(
-      imageUrl: map['strCategoryThumb'] ?? '',
-      description: map['strCategoryDescription'] ?? '',
-      categorie: map['strCategory'] ?? '',
-      id: map['idCategorie'] ?? '',
+      imageUrl: map['strMealThumb'] ?? '',
+      description: map['strInstructions'] ?? '',
+      categorie: map['strTags'] ?? '',
+      id: map['idMeal'] ?? '',
     );
   }
   String toJson() => json.encode(toMap());

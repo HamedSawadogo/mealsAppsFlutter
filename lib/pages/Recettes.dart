@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
-import 'package:recipes/pages/Details.dart';
+import '../widgets/ReceipeItem.dart';
 //import 'package:recipes/pages/Details.dart';
 
-class ReceipesPage extends StatelessWidget {
+class ReceipesPage extends StatefulWidget {
   const ReceipesPage({super.key});
+
+  @override
+  State<ReceipesPage> createState() => _ReceipesPageState();
+}
+
+class _ReceipesPageState extends State<ReceipesPage> {
+  final TextEditingController _reciepe = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _reciepe.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +30,12 @@ class ReceipesPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: TextFormField(
+                      controller: _reciepe,
+                      onChanged: (value) {
+                        setState(() {
+                          _reciepe.text = value;
+                        });
+                      },
                       decoration: InputDecoration(
                           hintText: "rechercher une recette",
                           suffixIcon: IconButton(
@@ -31,7 +50,7 @@ class ReceipesPage extends StatelessWidget {
           ),
           Expanded(
             child: FutureBuilder<List<Meal>>(
-              future: Meal.fetchData(),
+              future: Meal.fetchData(_reciepe.text),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return GridView.count(
@@ -53,54 +72,6 @@ class ReceipesPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ReceipeItem extends StatelessWidget {
-  const ReceipeItem({super.key, required this.meal});
-  final Meal meal;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => DetailsPage(meal: meal)));
-      },
-      child: Card(
-        elevation: 4,
-        child: Column(
-          children: [
-            Expanded(
-              child: SizedBox(
-                height: 200,
-                child: Image.network(
-                  meal.imageUrl,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  meal.categorie,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    meal.description.substring(1, 40),
-                    textAlign: TextAlign.center,
-                  ),
-                )
-              ],
-            )
-          ],
-        ),
       ),
     );
   }

@@ -13,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
