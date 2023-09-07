@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipes/model/Meal.dart';
-import 'package:recipes/model/mealsData.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key, required this.meal});
@@ -16,7 +15,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.deepOrange,
         title: Text(widget.meal.categorie),
       ),
       body: SingleChildScrollView(
@@ -56,7 +55,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               const Icon(
                                 Icons.share,
                                 size: 29,
-                                color: Colors.pink,
+                                color: Colors.green,
                               ),
                               const SizedBox(
                                 width: 40,
@@ -65,14 +64,21 @@ class _DetailsPageState extends State<DetailsPage> {
                                 onTap: () {
                                   widget.meal.isFavorite =
                                       !widget.meal.isFavorite;
-                                  Meal.addFavoriteMeal(widget.meal);
+
+                                  if (Meal.inFavorite(widget.meal)) {
+                                    return;
+                                  }
+
+                                  if (widget.meal.isFavorite) {
+                                    Meal.addFavoriteMeal(widget.meal);
+                                  }
                                 },
                                 child: Icon(
                                   widget.meal.isFavorite
                                       ? Icons.favorite
                                       : Icons.favorite_border,
                                   size: 29,
-                                  color: Colors.pink,
+                                  color: Colors.green,
                                 ),
                               )
                             ],

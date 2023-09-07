@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
-import 'package:recipes/model/mealsData.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});

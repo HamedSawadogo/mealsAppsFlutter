@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/main.dart';
 import '../pages/Recettes.dart';
 import '../pages/FavoritePage.dart';
-import '../pages/Recettes.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key, required this.username});
-  final String username;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,41 +14,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: Colors.deepOrange,
+      drawer: Drawer(),
       appBar: AppBar(
-        backgroundColor: Colors.pink,
-        title: [
-          Text('Welcomme ${widget.username}!'),
-          Text("Favories")
-        ][_pageIndex],
+        elevation: 0,
+        backgroundColor: Colors.white,
       ),
       body: [const ReceipesPage(), const FavoritePage()][_pageIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 19,
-        currentIndex: _pageIndex,
-        onTap: (value) {
-          setState(() {
-            _pageIndex = value;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-              backgroundColor: Colors.pink,
-              tooltip: "recettes",
-              icon: Icon(
-                Icons.food_bank,
-                color: Colors.pink,
-              ),
-              label: "recettes"),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.pink,
-              icon: Icon(
-                Icons.favorite,
-                color: Colors.pink,
-              ),
-              label: "favorits"),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   elevation: 19,
+      //   currentIndex: _pageIndex,
+      //   onTap: (value) {
+      //     setState(() {
+      //       _pageIndex = value;
+      //     });
+      //   },
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //         backgroundColor: Colors.green,
+      //         tooltip: "recettes",
+      //         icon: Icon(
+      //           Icons.food_bank,
+      //           color: Colors.green,
+      //         ),
+      //         label: "recettes"),
+      //     BottomNavigationBarItem(
+      //         backgroundColor: Colors.green,
+      //         icon: Icon(
+      //           Icons.favorite,
+      //           color: Colors.green,
+      //         ),
+      //         label: "favorits"),
+      //   ],
+      // ),
     );
   }
 }

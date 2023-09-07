@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/pages/HomePage.dart';
-import 'package:recipes/pages/WelcomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +19,6 @@ class _MyAppState extends State<MyApp> {
     return const MaterialApp(
         color: Colors.pink,
         debugShowCheckedModeBanner: false,
-        home: WelcomePage());
+        home: HomePage());
   }
 }

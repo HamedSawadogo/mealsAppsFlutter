@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 class Meal {
@@ -35,6 +34,15 @@ class Meal {
 
   static getMeal(int index) {
     return favorites[index];
+  }
+
+  static bool inFavorite(Meal _meal) {
+    for (Meal meal in favorites) {
+      if (meal.categorie == _meal.categorie) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static void addFavoriteMeal(Meal meal) {
