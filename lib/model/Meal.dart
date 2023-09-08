@@ -6,14 +6,16 @@ class Meal {
   String description;
   String categorie;
   String id;
+  String name;
   bool isFavorite = false;
   static List<Meal> favorites = [];
-  Meal({
-    required this.imageUrl,
-    required this.description,
-    required this.categorie,
-    required this.id,
-  });
+
+  Meal(
+      {required this.imageUrl,
+      required this.description,
+      required this.categorie,
+      required this.id,
+      required this.name});
 
   static Future<List<Meal>> fetchData(String receipe) async {
     //https://www.themealdb.com/api/json/v1/1/search.php?s=
@@ -65,11 +67,11 @@ class Meal {
 
   factory Meal.fromJson(Map<String, dynamic> map) {
     return Meal(
-      imageUrl: map['strMealThumb'] ?? '',
-      description: map['strInstructions'] ?? '',
-      categorie: map['strTags'] ?? '',
-      id: map['idMeal'] ?? '',
-    );
+        imageUrl: map['strMealThumb'] ?? '',
+        description: map['strInstructions'] ?? '',
+        categorie: map['strTags'] ?? '',
+        id: map['idMeal'] ?? '',
+        name: map["strMeal"]);
   }
   String toJson() => json.encode(toMap());
 }

@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 import "../model/Meal.dart";
 import "../pages/Details.dart";
 
@@ -14,6 +15,7 @@ class ReceipeItem extends StatelessWidget {
             MaterialPageRoute(builder: (context) => DetailsPage(meal: meal)));
       },
       child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         elevation: 4,
         child: Column(
           children: [
@@ -31,14 +33,16 @@ class ReceipeItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  meal.categorie,
-                  style: const TextStyle(
+                  meal.name,
+                  style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     meal.description.substring(1, 40),
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, fontWeight: FontWeight.w400),
                     textAlign: TextAlign.center,
                   ),
                 )

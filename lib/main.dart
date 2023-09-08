@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/pages/HomePage.dart';
 
 void main() {
@@ -15,6 +16,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    IngredientsListData.fetchMealsIngredient("soup")
+        .then((value) => print(value));
     return const MaterialApp(
         color: Colors.pink,
         debugShowCheckedModeBanner: false,
