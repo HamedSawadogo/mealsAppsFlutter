@@ -22,6 +22,18 @@ class _ReceipesPageState extends State<ReceipesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("favoris"),
+            )
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+      ),
       body: Column(
         children: [
           Row(

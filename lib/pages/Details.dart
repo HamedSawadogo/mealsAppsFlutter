@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipes/model/Ingredient.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/model/Meal.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key, required this.meal});
@@ -12,6 +13,18 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  String? extractVideoIdFromUrl(String url) {
+    // Utilisez une expression régulière pour extraire l'ID de la vidéo.
+    RegExp regExp = RegExp(r"(?<=v=)([a-zA-Z0-9_-]+)");
+    Match match = regExp.firstMatch(url) as Match;
+
+    if (match != null && match.groupCount >= 1) {
+      return match.group(1); // Retourne l'ID de la vidéo
+    } else {
+      return null; // Aucun ID de vidéo trouvé dans l'URL
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +34,19 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: Column(
         children: [
-          Container(
-              height: 300,
-              width: double.infinity,
-              child: Image.network(
-                widget.meal.imageUrl,
-                fit: BoxFit.fill,
-              )),
+          Center(
+            child: YoutubePlayer(
+              controller: YoutubePlayerController(
+                initialVideoId: extractVideoIdFromUrl(
+                    widget.meal.youtubeUrl)!, // ID de la vidéo YouTube
+                flags: const YoutubePlayerFlags(
+                  autoPlay: true,
+                  mute: false,
+                ),
+              ),
+              showVideoProgressIndicator: true,
+            ),
+          ),
           const SizedBox(
             height: 8,
           ),
@@ -45,14 +64,13 @@ class _DetailsPageState extends State<DetailsPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       final Ingredient ingredient = snapshot.data![index];
-
                       return !ingredient.name.isEmpty
                           ? Card(
                               elevation: 2,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               child: Container(
-                                padding: EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(4),
                                 child: Row(
                                   children: [
                                     Expanded(

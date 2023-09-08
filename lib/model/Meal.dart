@@ -8,6 +8,7 @@ class Meal {
   String id;
   String name;
   bool isFavorite = false;
+  String youtubeUrl;
   static List<Meal> favorites = [];
 
   Meal(
@@ -15,11 +16,10 @@ class Meal {
       required this.description,
       required this.categorie,
       required this.id,
-      required this.name});
+      required this.name,
+      required this.youtubeUrl});
 
   static Future<List<Meal>> fetchData(String receipe) async {
-    //https://www.themealdb.com/api/json/v1/1/search.php?s=
-    //https://www.themealdb.com/api/json/v1/1/categories.php
     String uri =
         "https://www.themealdb.com/api/json/v1/1/search.php?s=${receipe}";
     var url = Uri.parse(uri);
@@ -71,7 +71,8 @@ class Meal {
         description: map['strInstructions'] ?? '',
         categorie: map['strTags'] ?? '',
         id: map['idMeal'] ?? '',
-        name: map["strMeal"]);
+        name: map["strMeal"],
+        youtubeUrl: map['strYoutube']);
   }
   String toJson() => json.encode(toMap());
 }
