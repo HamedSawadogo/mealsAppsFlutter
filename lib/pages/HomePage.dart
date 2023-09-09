@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/pages/WelcomePage.dart';
 import '../pages/Recettes.dart';
 import '../pages/FavoritePage.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 
-enum _SelectedTab { home, favorite, search }
+enum _SelectedTab { home, fastfood, favorite }
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  int _pageIndex = 0;
   var _selectedTab = _SelectedTab.home;
 
   void _handleIndexChanged(int i) {
@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
+        WelcomePage(),
         const ReceipesPage(),
         const FavoritePage()
       ][_SelectedTab.values.indexOf(_selectedTab)],
@@ -44,12 +45,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
           /// Likes
           DotNavigationBarItem(
-            icon: const Icon(Icons.favorite_border),
-            selectedColor: Colors.pink,
+            icon: const Icon(Icons.fastfood),
+            selectedColor: Colors.orange,
           ),
           DotNavigationBarItem(
-            icon: Icon(Icons.search),
-            selectedColor: Colors.orange,
+            icon: Icon(Icons.favorite),
+            selectedColor: Colors.pink,
           ),
         ],
       ),

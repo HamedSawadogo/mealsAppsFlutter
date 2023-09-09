@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:recipes/model/Ingredient.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/model/Meal.dart';
+import 'package:recipes/pages/MoreMealInfo.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../widgets/FavoriteItem.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key, required this.meal});
@@ -50,9 +53,9 @@ class _DetailsPageState extends State<DetailsPage> {
           const SizedBox(
             height: 8,
           ),
-          const Row(
+          Row(
             children: [
-              Expanded(
+              const Expanded(
                 flex: 3,
                 child: Text(
                   "Liste des ingredients",
@@ -63,7 +66,20 @@ class _DetailsPageState extends State<DetailsPage> {
                 padding: EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Icon(Icons.favorite, color: Colors.deepOrange),
+                    FavoriteItem(meal: widget.meal),
+                    Padding(
+                      padding: EdgeInsets.all(2.0),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                MoreMealInfo(meal: widget.meal),
+                          ));
+                        },
+                        icon: Icon(Icons.more_vert),
+                        color: Colors.deepOrange,
+                      ),
+                    )
                   ],
                 ),
               )

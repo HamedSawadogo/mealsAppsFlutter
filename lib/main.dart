@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/pages/HomePage.dart';
+import 'package:recipes/provider/MealsProvider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +20,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     IngredientsListData.fetchMealsIngredient("soup")
         .then((value) => print(value));
-    return const MaterialApp(
-        color: Colors.pink,
-        debugShowCheckedModeBanner: false,
-        home: HomePage());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MealFavoriotesProdider(),
+        )
+      ],
+      child: const MaterialApp(
+          color: Colors.pink,
+          debugShowCheckedModeBanner: false,
+          home: HomePage()),
+    );
   }
 }
