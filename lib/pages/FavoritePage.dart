@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
+import '../widgets/FavoriteMealItem.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -7,17 +8,26 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: Meal.favorites.length,
-        itemBuilder: (context, index) {
-          final Meal meal = Meal.getMeal(index);
-          return ListTile(
-            leading: Image.network(meal.imageUrl),
-            title: Text(meal.categorie),
-            trailing: Icon(Icons.more_horiz),
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: const Text('favorites'),
+        ),
+        body: FutureBuilder<List<Meal>>(
+          future: Meal.fetchData(""),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final Meal meal = snapshot.data![index];
+                  return FavoriteMealItem(meal: meal);
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ));
   }
 }

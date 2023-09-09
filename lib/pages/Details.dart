@@ -50,9 +50,24 @@ class _DetailsPageState extends State<DetailsPage> {
           const SizedBox(
             height: 8,
           ),
-          const Text(
-            "Liste des ingredients",
-            style: TextStyle(fontSize: 22),
+          const Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Text(
+                  "Liste des ingredients",
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.favorite, color: Colors.deepOrange),
+                  ],
+                ),
+              )
+            ],
           ),
           Expanded(
             child: FutureBuilder<List<Ingredient>>(

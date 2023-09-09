@@ -25,7 +25,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: [const ReceipesPage(), const FavoritePage()][0],
+      body: [
+        const ReceipesPage(),
+        const FavoritePage()
+      ][_SelectedTab.values.indexOf(_selectedTab)],
       bottomNavigationBar: DotNavigationBar(
         backgroundColor: Color.fromARGB(248, 236, 234, 234),
         currentIndex: _SelectedTab.values.indexOf(_selectedTab),
