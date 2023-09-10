@@ -26,7 +26,8 @@ class _FavoriteItemState extends State<FavoriteItem> {
               defaultColor: Colors.grey,
               reactColor: Colors.red,
               onPressed: () async {
-                //Simulated api/io waiting calls
+                Provider.of<MealFavoriotesProdider>(context, listen: false)
+                    .addFavorite(widget.meal);
                 await Future.delayed(Duration(seconds: 1));
               }));
     }));

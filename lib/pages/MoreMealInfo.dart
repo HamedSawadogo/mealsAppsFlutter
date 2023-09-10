@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../model/Meal.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MoreMealInfo extends StatelessWidget {
   const MoreMealInfo({super.key, required this.meal});
@@ -40,8 +41,11 @@ class MoreMealInfo extends StatelessWidget {
                           const SizedBox(
                             width: 30,
                           ),
-                          const Icon(
-                            Icons.wb_cloudy_rounded,
+                          IconButton(
+                            onPressed: () {
+                              // launch(meal.websiteLink);
+                            },
+                            icon: const Icon(Icons.wb_cloudy_rounded),
                             color: Colors.deepOrange,
                           ),
                           IconButton(

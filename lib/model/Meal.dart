@@ -9,6 +9,7 @@ class Meal {
   String name;
   bool isFavorite = false;
   String youtubeUrl;
+  String websiteLink;
   static List<Meal> favorites = [];
 
   Meal(
@@ -17,7 +18,8 @@ class Meal {
       required this.categorie,
       required this.id,
       required this.name,
-      required this.youtubeUrl});
+      required this.youtubeUrl,
+      required this.websiteLink});
 
   static Future<List<Meal>> fetchData(String receipe) async {
     String uri =
@@ -72,7 +74,8 @@ class Meal {
         categorie: map['strTags'] ?? '',
         id: map['idMeal'] ?? '',
         name: map["strMeal"],
-        youtubeUrl: map['strYoutube']);
+        youtubeUrl: map['strYoutube'],
+        websiteLink: map['strSource']);
   }
   String toJson() => json.encode(toMap());
 }

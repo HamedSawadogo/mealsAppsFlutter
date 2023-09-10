@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/pages/HomePage.dart';
+import 'package:recipes/pages/LoginPage.dart';
 import 'package:recipes/provider/MealsProvider.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       child: const MaterialApp(
           color: Colors.pink,
           debugShowCheckedModeBanner: false,
-          home: HomePage()),
+          home: LoginPage()),
     );
   }
 }

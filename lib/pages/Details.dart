@@ -68,7 +68,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     FavoriteItem(meal: widget.meal),
                     Padding(
-                      padding: EdgeInsets.all(2.0),
+                      padding:const EdgeInsets.all(2.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -76,7 +76,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 MoreMealInfo(meal: widget.meal),
                           ));
                         },
-                        icon: Icon(Icons.more_vert),
+                        icon:const Icon(Icons.more_vert),
                         color: Colors.deepOrange,
                       ),
                     )

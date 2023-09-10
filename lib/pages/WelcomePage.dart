@@ -40,16 +40,16 @@ class WelcomePage extends StatelessWidget {
                       SizedBox(
                         height: 60,
                       ),
-                      Positioned(
-                        bottom: 10,
-                        left: 40,
-                        child: Center(
-                          child: Text(
-                            meal.name,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      // Positioned(
+                      //   bottom: 10,
+                      //   left: 40,
+                      //   child: Center(
+                      //     child: Text(
+                      //       meal.name,
+                      //       style: TextStyle(color: Colors.white),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

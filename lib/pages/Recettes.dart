@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
 import '../widgets/ReceipeItem.dart';
-//import 'package:recipes/pages/Details.dart';
 
 class ReceipesPage extends StatefulWidget {
   const ReceipesPage({super.key});
@@ -24,7 +23,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
-          children: [
+          children:const [
             ListTile(
               title: Text("favoris"),
             )
@@ -41,7 +40,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
-                  child: TextFormField(
+                  child: TextField(
                       controller: _reciepe,
                       onChanged: (value) {
                         setState(() {
