@@ -15,7 +15,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
   @override
   void initState() {
     super.initState();
-    _reciepe.text = "";
+    _reciepe.text = "fish";
   }
 
   @override
@@ -23,7 +23,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
-          children:const [
+          children: const [
             ListTile(
               title: Text("favoris"),
             )

@@ -19,7 +19,7 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: const Text('favorites'),
+          title: Text('favorites (${provider.favoritesMeals().length})'),
         ),
         body: ListView.builder(
             itemCount: provider.favoritesMeals().length,
