@@ -38,16 +38,19 @@ class _DetailsPageState extends State<DetailsPage> {
       body: Column(
         children: [
           Center(
-            child: YoutubePlayer(
-              controller: YoutubePlayerController(
-                initialVideoId: extractVideoIdFromUrl(
-                    widget.meal.youtubeUrl)!, // ID de la vidéo YouTube
-                flags: const YoutubePlayerFlags(
-                  autoPlay: true,
-                  mute: false,
+            child: Hero(
+              tag: widget.meal.id,
+              child: YoutubePlayer(
+                controller: YoutubePlayerController(
+                  initialVideoId: extractVideoIdFromUrl(
+                      widget.meal.youtubeUrl)!, // ID de la vidéo YouTube
+                  flags: const YoutubePlayerFlags(
+                    autoPlay: true,
+                    mute: false,
+                  ),
                 ),
+                showVideoProgressIndicator: true,
               ),
-              showVideoProgressIndicator: true,
             ),
           ),
           const SizedBox(
@@ -63,12 +66,12 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     FavoriteItem(meal: widget.meal),
                     Padding(
-                      padding:const EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -76,7 +79,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 MoreMealInfo(meal: widget.meal),
                           ));
                         },
-                        icon:const Icon(Icons.more_vert),
+                        icon: const Icon(Icons.more_vert),
                         color: Colors.deepOrange,
                       ),
                     )
@@ -122,7 +125,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     },
                   );
                 } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
+                  return const Text("une erreur est survenue!");
                 }
                 return const Center(child: CircularProgressIndicator());
               },

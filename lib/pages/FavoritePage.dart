@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes/model/Meal.dart';
+import 'package:recipes/pages/Details.dart';
 import 'package:recipes/provider/MealsProvider.dart';
 import '../widgets/FavoriteMealItem.dart';
 
@@ -25,27 +26,34 @@ class _FavoritePageState extends State<FavoritePage> {
             itemCount: provider.favoritesMeals().length,
             itemBuilder: (context, index) {
               final Meal meal = provider.favoritesMeals()[index];
-              return Stack(
-                children: [
-                  Dismissible(
-                      movementDuration: const Duration(seconds: 1),
-                      key: Key(meal.id),
-                      onDismissed: (direction) {
-                        setState(() {
-                          provider.favoritesMeals().removeAt(index);
-                        });
-                      },
-                      background: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailsPage(meal: meal),
+                  ));
+                },
+                child: Stack(
+                  children: [
+                    Dismissible(
+                        movementDuration: const Duration(seconds: 1),
+                        key: Key(meal.id),
+                        onDismissed: (direction) {
+                          setState(() {
+                            provider.favoritesMeals().removeAt(index);
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.all(10.0),
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      child: FavoriteMealItem(meal: meal))
-                ],
+                        child: FavoriteMealItem(meal: meal))
+                  ],
+                ),
               );
             }));
   }

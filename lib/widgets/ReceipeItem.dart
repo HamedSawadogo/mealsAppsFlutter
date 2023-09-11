@@ -20,12 +20,15 @@ class ReceipeItem extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: SizedBox(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  meal.imageUrl,
-                  fit: BoxFit.cover,
+              child: Hero(
+                tag: meal.id,
+                child: SizedBox(
+                  height: 300,
+                  width: double.infinity,
+                  child: Image.network(
+                    meal.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

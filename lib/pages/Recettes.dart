@@ -73,7 +73,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
+                  return const Text('aucune reccete trouvé!');
                 }
                 // By default, show a loading spinner.
                 return const Center(

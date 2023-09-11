@@ -12,12 +12,15 @@ class FavoriteMealItem extends StatelessWidget {
       elevation: 4,
       child: Row(children: [
         Expanded(
-            child: SizedBox(
-                height: 80,
-                child: Image.network(
-                  meal.imageUrl,
-                  fit: BoxFit.fill,
-                ))),
+            child: Hero(
+          tag: meal.id,
+          child: SizedBox(
+              height: 80,
+              child: Image.network(
+                meal.imageUrl,
+                fit: BoxFit.fill,
+              )),
+        )),
         const SizedBox(
           width: 10,
         ),
