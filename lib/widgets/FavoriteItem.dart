@@ -17,15 +17,25 @@ class _FavoriteItemState extends State<FavoriteItem> {
         Provider.of<MealFavoriotesProdider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(7),
-      child: IconButton(
-        onPressed: () {
+      child: IconButton(onPressed: () {
+        setState(() {
           provider.addFavorite(widget.meal);
+        });
+      }, icon: Consumer<MealFavoriotesProdider>(
+        builder: (context, value, child) {
+          return !value.isFavoriteMeal(widget.meal)
+              ? const Icon(
+                  Icons.favorite_border,
+                  color: Colors.deepOrange,
+                  size: 33,
+                )
+              : const Icon(
+                  Icons.favorite,
+                  color: Colors.deepOrange,
+                  size: 33,
+                );
         },
-        icon: const Icon(
-          Icons.favorite_border,
-          size: 33,
-        ),
-      ),
+      )),
     );
   }
 }

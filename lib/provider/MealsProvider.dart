@@ -6,21 +6,21 @@ class MealFavoriotesProdider with ChangeNotifier {
 
   bool isFavoriteMeal(Meal _meal) {
     for (Meal meal in favorites) {
-      if (meal.id == _meal.id || meal.name == _meal.name) {
-        return meal.isFavorite;
+      if (meal.id == _meal.id || meal.name == _meal.name || meal == _meal) {
+        return true;
       }
     }
     return false;
   }
 
   void addFavorite(Meal meal) {
-    if (meal.isFavorite) {
-      meal.isFavorite = !meal.isFavorite;
-      notifyListeners();
-    } else {
+    meal.isFavorite = !meal.isFavorite;
+    if (meal.isFavorite && !isFavoriteMeal(meal)) {
       favorites.add(meal);
-      notifyListeners();
+    } else {
+      favorites.remove(meal);
     }
+    notifyListeners();
   }
 
   List<Meal> favoritesMeals() {
