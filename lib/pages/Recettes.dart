@@ -13,6 +13,12 @@ class _ReceipesPageState extends State<ReceipesPage> {
   final TextEditingController _reciepe = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _reciepe.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     _reciepe.text = "fish";

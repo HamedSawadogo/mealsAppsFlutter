@@ -5,16 +5,22 @@ import '../widgets/FormInputItem.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
+
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+   @override
+  void dispose() {
+    super.dispose();
+      _username.dispose();
+      _password.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    TextEditingController _username = TextEditingController();
-    TextEditingController _password = TextEditingController();
 
     ///form key
     final _formKey = GlobalKey<FormState>();

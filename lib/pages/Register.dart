@@ -10,9 +10,17 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _username.dispose();
+    _password.dispose();
+    _email.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

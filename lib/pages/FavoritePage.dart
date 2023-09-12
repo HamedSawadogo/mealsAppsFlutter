@@ -57,8 +57,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                 color: Colors.white,
                               ),
                             ),
-                            child: FavoriteMealItem(meal: meal))
-                      ],
+                            child: FavoriteMealItem(meal: meal))],
                     ),
                   );
                 });

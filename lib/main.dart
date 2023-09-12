@@ -19,18 +19,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    IngredientsListData.fetchMealsIngredient("soup")
-        .then((value) => print(value));
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => MealFavoriotesProdider(),
         )
       ],
-      child: const MaterialApp(
+      child:  MaterialApp(
           color: Colors.pink,
           debugShowCheckedModeBanner: false,
-          home: LoginPage()),
+          theme: ThemeData(
+            primarySwatch: Colors.deepOrange
+          ),
+          home:const LoginPage()),
     );
   }
 }
