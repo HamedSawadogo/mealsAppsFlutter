@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
+import 'package:recipes/utils/constants.dart';
 import '../widgets/ReceipeItem.dart';
 
 class ReceipesPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
       ),
       body: Column(
         children: [
@@ -57,7 +58,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
                           hintText: "rechercher une recette",
                           suffixIcon: IconButton(
                               onPressed: () {},
-                              color: Colors.deepOrange,
+                              color: appColor,
                               icon: const Icon(Icons.search)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40)))),

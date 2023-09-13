@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes/provider/MealsProvider.dart';
+import 'package:recipes/utils/constants.dart';
 import '../model/Meal.dart';
 import '../widgets/MealCardItem.dart';
 
@@ -15,7 +15,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Recettes du jour"),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
       ),
       body: Column(children: [
         Expanded(
@@ -53,10 +53,9 @@ class WelcomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "RECETTES POPULAIRES",
-                style: GoogleFonts.roboto(
-                    fontSize: 18, fontWeight: FontWeight.bold),
+                style: bigBoldTitle,
               ),
               Expanded(
                 child: FutureBuilder(

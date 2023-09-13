@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/pages/Details.dart';
 import 'package:recipes/provider/MealsProvider.dart';
+import 'package:recipes/utils/constants.dart';
 import '../widgets/FavoriteMealItem.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -15,11 +16,9 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
-    MealFavoriotesProdider _provider =
-        Provider.of<MealFavoriotesProdider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: appColor,
           title: Consumer<MealFavoriotesProdider>(
             builder: (context, value, child) {
               return Text('favorites (${value.favoritesMeals().length})');
@@ -49,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
                               });
                             },
                             background: Container(
-                              color: Colors.red,
+                              color: appColor,
                               alignment: Alignment.centerRight,
                               padding: const EdgeInsets.all(10.0),
                               child: const Icon(
@@ -57,7 +56,8 @@ class _FavoritePageState extends State<FavoritePage> {
                                 color: Colors.white,
                               ),
                             ),
-                            child: FavoriteMealItem(meal: meal))],
+                            child: FavoriteMealItem(meal: meal))
+                      ],
                     ),
                   );
                 });

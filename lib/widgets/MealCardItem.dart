@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/utils/constants.dart';
 import '../model/Meal.dart';
 
 class MealCardItem extends StatelessWidget {
@@ -25,8 +26,7 @@ class MealCardItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     meal.name,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                    style: titleBold,
                   ),
                 ),
                 Padding(
@@ -45,11 +45,11 @@ class MealCardItem extends StatelessWidget {
             ),
             Text(
               meal.categorie,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: titleBold,
             ),
             Text(
               meal.description.substring(0, 200),
-              style: const TextStyle(fontSize: 16),
+              style: subTitle,
             ),
           ],
         ),

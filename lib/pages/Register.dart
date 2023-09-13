@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/utils/constants.dart';
 import 'package:recipes/widgets/FormInputItem.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -42,13 +43,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
               children: [
                 Text(
                   "Inscription",
-                  style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
+                  style: formStyle,
                 ),
                 SizedBox(width: 10),
                 Icon(
                   Icons.account_circle_outlined,
                   size: 33,
-                  color: Colors.deepOrange,
+                  color: appColor,
                 )
               ],
             ),
@@ -88,7 +89,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30))),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.deepOrange),
+                                MaterialStateProperty.all(appColor),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {}
@@ -98,7 +99,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           },
                           label: const Text(
                             "inscrivez vous",
-                            style: TextStyle(fontSize: 19),
+                            style: title,
                           ),
                           icon: const Icon(
                             Icons.login,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/provider/MealsProvider.dart';
+import 'package:recipes/utils/constants.dart';
 
 class FavoriteItem extends StatefulWidget {
   const FavoriteItem({super.key, required this.meal});
@@ -26,12 +27,12 @@ class _FavoriteItemState extends State<FavoriteItem> {
           return !value.isFavoriteMeal(widget.meal)
               ? const Icon(
                   Icons.favorite_border,
-                  color: Colors.deepOrange,
+                  color: appColor,
                   size: 33,
                 )
               : const Icon(
                   Icons.favorite,
-                  color: Colors.deepOrange,
+                  color: appColor,
                   size: 33,
                 );
         },

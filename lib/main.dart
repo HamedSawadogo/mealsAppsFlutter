@@ -4,6 +4,7 @@ import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/pages/HomePage.dart';
 import 'package:recipes/pages/LoginPage.dart';
 import 'package:recipes/provider/MealsProvider.dart';
+import 'package:recipes/utils/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,13 +26,11 @@ class _MyAppState extends State<MyApp> {
           create: (context) => MealFavoriotesProdider(),
         )
       ],
-      child:  MaterialApp(
-          color: Colors.pink,
+      child: MaterialApp(
+          color: appColor,
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.deepOrange
-          ),
-          home:const LoginPage()),
+          theme: ThemeData(primarySwatch: Colors.deepOrange),
+          home: const LoginPage()),
     );
   }
 }

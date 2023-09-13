@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:recipes/utils/constants.dart';
 import '../model/Meal.dart';
 
 class FavoriteMealItem extends StatelessWidget {
@@ -33,12 +33,13 @@ class FavoriteMealItem extends StatelessWidget {
               children: [
                 Text(
                   meal.name,
-                  style: GoogleFonts.roboto(
-                      fontSize: 18, fontWeight: FontWeight.w600),
+                  style: title,
                 ),
-                Text(meal.categorie, style: GoogleFonts.roboto(fontSize: 15)),
-                Text(meal.description.substring(0, 40),
-                    style: GoogleFonts.roboto(fontSize: 15))
+                Text(meal.categorie, style: subTitle),
+                Text(
+                  meal.description.substring(0, 40),
+                  style: subTitle,
+                )
               ],
             ),
           ),

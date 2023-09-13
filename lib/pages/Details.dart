@@ -3,6 +3,7 @@ import 'package:recipes/model/Ingredient.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/pages/MoreMealInfo.dart';
+import 'package:recipes/utils/constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../widgets/FavoriteItem.dart';
@@ -32,7 +33,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
         title: Text(widget.meal.categorie),
       ),
       body: Column(
@@ -62,7 +63,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 flex: 3,
                 child: Text(
                   "Liste des ingredients",
-                  style: TextStyle(fontSize: 22),
+                  style: bigTitle,
                 ),
               ),
               Padding(
@@ -80,7 +81,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           ));
                         },
                         icon: const Icon(Icons.more_vert),
-                        color: Colors.deepOrange,
+                        color: appColor,
                       ),
                     )
                   ],
@@ -98,7 +99,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       final Ingredient ingredient = snapshot.data![index];
-                      return !ingredient.name.isEmpty
+                      return ingredient.name.isNotEmpty
                           ? Card(
                               elevation: 2,
                               shape: RoundedRectangleBorder(
@@ -110,10 +111,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        ingredient.name +
-                                            "-------------------------------",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                        "${ingredient.name}-------------------------------",
+                                        style: titleBold,
                                       ),
                                     ),
                                     Expanded(child: Text(ingredient.mesure))
