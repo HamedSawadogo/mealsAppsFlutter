@@ -8,7 +8,6 @@ import '../widgets/FavoriteMealItem.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
-
   @override
   State<FavoritePage> createState() => _FavoritePageState();
 }
@@ -20,11 +19,11 @@ class _FavoritePageState extends State<FavoritePage> {
         appBar: AppBar(
           backgroundColor: appColor,
           title: Consumer<MealFavoriotesProdider>(
-            builder: (context, value, child) {
+             builder: (context, value, child) {
               return Text('favorites (${value.favoritesMeals().length})');
-            },
-          ),
-        ),
+             },
+           ),
+         ),
         body: Consumer<MealFavoriotesProdider>(
           builder: (context, provider, child) {
             return ListView.builder(
@@ -37,7 +36,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         builder: (context) => DetailsPage(meal: meal),
                       ));
                     },
-                    child: Stack(
+                    child:Stack(
                       children: [
                         Dismissible(
                             movementDuration: const Duration(seconds: 1),

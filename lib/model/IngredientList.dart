@@ -12,9 +12,9 @@ class IngredientsListData {
   ///nom puis remplir la liste d'ingrédients
 
 
-  static Future<List<Ingredient>> fetchMealsIngredient(String receipe) async {
+  static Future<List<Ingredient>> fetchMealsIngredient(final String receipe) async {
     String uri =
-        "https://www.themealdb.com/api/json/v1/1/search.php?s=${receipe}";
+        "https://www.themealdb.com/api/json/v1/1/search.php?s=$receipe";
     var url = Uri.parse(uri);
     final response = await http.get(url);
 
@@ -25,14 +25,10 @@ class IngredientsListData {
         Ingredient ingredient = Ingredient.name();
         ///creer un nouveau objet ingrédient qui contiendra un ingrédient
         ///puis ajouter a la liste des ingrédients
-        ingredient.name = jsonResponse[0]['strIngredient${i}'];
-        ingredient.mesure = jsonResponse[0]['strMeasure${i}'];
+        ingredient.name = jsonResponse[0]['strIngredient$i'];
+        ingredient.mesure = jsonResponse[0]['strMeasure$i'];
         ingredients.add(ingredient);
       }
-      ingredients.forEach((element) {
-        print(element.name);
-      });
-
       return ingredients;
     } else {
       throw Exception('Unexpected error occured!');

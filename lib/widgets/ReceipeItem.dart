@@ -19,32 +19,31 @@ class ReceipeItem extends StatelessWidget {
         elevation: 4,
         child: Column(
           children: [
-            Expanded(
-              child: Hero(
-                tag: meal.id,
-                child: SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Image.network(
-                    meal.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+            Hero(
+              tag: meal.id,
+              child: SizedBox(
+                height:80,
+                width: double.infinity,
+                child: Image.network(
+                  meal.imageUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   meal.name,
                   style: titleBold,
+                  textAlign: TextAlign.start,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     meal.description.substring(1, 40),
                     style: title,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                   ),
                 )
               ],

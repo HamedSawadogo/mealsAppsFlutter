@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 ///TextStyles constants
@@ -10,4 +9,4 @@ const subTitle = TextStyle(fontSize: 16);
 const formStyle = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
 
 ///colors constants
-const appColor = Color.fromARGB(0, 241, 68, 5);
+const appColor = Color.fromARGB(255, 255, 87, 34);

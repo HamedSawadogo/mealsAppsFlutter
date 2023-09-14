@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const EdgeInsets.all(10)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20))),
+                                    borderRadius: BorderRadius.circular(15))),
                             backgroundColor:
                                 MaterialStateProperty.all(appColor),
                           ),

@@ -22,7 +22,7 @@ class _DetailsPageState extends State<DetailsPage> {
     RegExp regExp = RegExp(r"(?<=v=)([a-zA-Z0-9_-]+)");
     Match match = regExp.firstMatch(url) as Match;
 
-    if (match != null && match.groupCount >= 1) {
+    if (match.groupCount >= 1) {
       return match.group(1); // Retourne l'ID de la vidéo
     } else {
       return null; // Aucun ID de vidéo trouvé dans l'URL

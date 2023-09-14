@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/model/User.dart';
 import 'package:recipes/utils/constants.dart';
+import 'package:recipes/widgets/EmailInputForm.dart';
 import 'package:recipes/widgets/FormInputItem.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
-
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
 }
@@ -62,18 +63,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     text: "username",
                     hinText: "nom d'utilisateur",
                     formController: _username,
-                    type: FormType.username),
-                FormInputItem(
-                    text: "email",
-                    hinText: "votre email",
-                    formController: _email,
-                    type: FormType.email),
+                    type: FormType.username
+                ),
+               EmailInputForm(
+                   formController:_email, text: "email", hinText: "email"),
                 FormInputItem(
                     text: "password",
                     hinText: "mot de passe",
                     formController: _password,
-                    type: FormType.password),
-
+                    type: FormType.password
+                ),
                 ///button
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
@@ -96,6 +95,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             // Navigator.of(context).push(MaterialPageRoute(
                             //   builder: (context) => const HomePage(),
                             // ));
+                            setState(() {
+                              _email.text="";
+                              _password.text="";
+                              _username.text="";
+                            });
+                            final user=User(email:
+                                _email.text,
+                                password: _password.text,
+                                username: _username.text);
+                            print(user.toString());
                           },
                           label: const Text(
                             "inscrivez vous",

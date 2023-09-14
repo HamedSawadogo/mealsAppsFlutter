@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/utils/constants.dart';
+import 'package:recipes/widgets/Drawer.dart';
 import '../widgets/ReceipeItem.dart';
 
 class ReceipesPage extends StatefulWidget {
@@ -22,21 +23,13 @@ class _ReceipesPageState extends State<ReceipesPage> {
   @override
   void initState() {
     super.initState();
-    _reciepe.text = "fish";
+    _reciepe.text = "chi";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            ListTile(
-              title: Text("favoris"),
-            )
-          ],
-        ),
-      ),
+      drawer:const UserDrawer(),
       appBar: AppBar(
         backgroundColor: appColor,
       ),
@@ -55,13 +48,16 @@ class _ReceipesPageState extends State<ReceipesPage> {
                         });
                       },
                       decoration: InputDecoration(
-                          hintText: "rechercher une recette",
-                          suffixIcon: IconButton(
-                              onPressed: () {},
-                              color: appColor,
-                              icon: const Icon(Icons.search)),
+                      hintText: "rechercher une recette",
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          color: appColor,
+                          icon: const Icon(Icons.search)),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40)))),
+                              borderRadius: BorderRadius.circular(40)
+                          )
+                      )
+                  ),
                 ),
               ),
             ],
