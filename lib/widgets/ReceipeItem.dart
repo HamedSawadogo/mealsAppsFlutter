@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:google_fonts/google_fonts.dart";
+import "package:recipes/utils/constants.dart";
 import "../model/Meal.dart";
 import "../pages/Details.dart";
 
@@ -19,9 +19,10 @@ class ReceipeItem extends StatelessWidget {
         elevation: 4,
         child: Column(
           children: [
-            Expanded(
+            Hero(
+              tag: meal.id,
               child: SizedBox(
-                height: 300,
+                height:80,
                 width: double.infinity,
                 child: Image.network(
                   meal.imageUrl,
@@ -30,20 +31,19 @@ class ReceipeItem extends StatelessWidget {
               ),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   meal.name,
-                  style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.bold, fontSize: 18),
+                  style: titleBold,
+                  textAlign: TextAlign.start,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     meal.description.substring(1, 40),
-                    style: GoogleFonts.roboto(
-                        fontSize: 15, fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.center,
+                    style: title,
+                    textAlign: TextAlign.start,
                   ),
                 )
               ],

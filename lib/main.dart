@@ -4,6 +4,7 @@ import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/pages/HomePage.dart';
 import 'package:recipes/pages/LoginPage.dart';
 import 'package:recipes/provider/MealsProvider.dart';
+import 'package:recipes/utils/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,18 +20,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    IngredientsListData.fetchMealsIngredient("soup")
-        .then((value) => print(value));
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => MealFavoriotesProdider(),
         )
       ],
-      child: const MaterialApp(
-          color: Colors.pink,
+      child: MaterialApp(
+          color: appColor,
           debugShowCheckedModeBanner: false,
-          home: LoginPage()),
+          theme: ThemeData(primarySwatch: Colors.deepOrange),
+          home: const LoginPage()),
     );
   }
 }

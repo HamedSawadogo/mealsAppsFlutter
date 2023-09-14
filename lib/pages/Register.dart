@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/model/User.dart';
+import 'package:recipes/utils/constants.dart';
+import 'package:recipes/widgets/EmailInputForm.dart';
 import 'package:recipes/widgets/FormInputItem.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
-
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _username.dispose();
+    _password.dispose();
+    _email.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +44,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
               children: [
                 Text(
                   "Inscription",
-                  style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
+                  style: formStyle,
                 ),
                 SizedBox(width: 10),
                 Icon(
                   Icons.account_circle_outlined,
                   size: 33,
-                  color: Colors.deepOrange,
+                  color: appColor,
                 )
               ],
             ),
@@ -53,18 +63,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     text: "username",
                     hinText: "nom d'utilisateur",
                     formController: _username,
-                    type: FormType.username),
-                FormInputItem(
-                    text: "email",
-                    hinText: "votre email",
-                    formController: _email,
-                    type: FormType.email),
+                    type: FormType.username
+                ),
+               EmailInputForm(
+                   formController:_email, text: "email", hinText: "email"),
                 FormInputItem(
                     text: "password",
                     hinText: "mot de passe",
                     formController: _password,
-                    type: FormType.password),
-
+                    type: FormType.password
+                ),
                 ///button
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
@@ -80,17 +88,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30))),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.deepOrange),
+                                MaterialStateProperty.all(appColor),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {}
                             // Navigator.of(context).push(MaterialPageRoute(
                             //   builder: (context) => const HomePage(),
                             // ));
+                            setState(() {
+                              _email.text="";
+                              _password.text="";
+                              _username.text="";
+                            });
+                            final user=User(email:
+                                _email.text,
+                                password: _password.text,
+                                username: _username.text);
+                            print(user.toString());
                           },
                           label: const Text(
                             "inscrivez vous",
-                            style: TextStyle(fontSize: 19),
+                            style: title,
                           ),
                           icon: const Icon(
                             Icons.login,

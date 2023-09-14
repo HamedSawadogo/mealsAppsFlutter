@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/model/Meal.dart';
+import 'package:recipes/utils/constants.dart';
+import 'package:recipes/widgets/Drawer.dart';
 import '../widgets/ReceipeItem.dart';
 
 class ReceipesPage extends StatefulWidget {
@@ -13,25 +15,23 @@ class _ReceipesPageState extends State<ReceipesPage> {
   final TextEditingController _reciepe = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _reciepe.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
-    _reciepe.text = "fish";
+    _reciepe.text = "chi";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            ListTile(
-              title: Text("favoris"),
-            )
-          ],
-        ),
-      ),
+      drawer:const UserDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
       ),
       body: Column(
         children: [
@@ -48,13 +48,16 @@ class _ReceipesPageState extends State<ReceipesPage> {
                         });
                       },
                       decoration: InputDecoration(
-                          hintText: "rechercher une recette",
-                          suffixIcon: IconButton(
-                              onPressed: () {},
-                              color: Colors.deepOrange,
-                              icon: const Icon(Icons.search)),
+                      hintText: "rechercher une recette",
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          color: appColor,
+                          icon: const Icon(Icons.search)),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40)))),
+                              borderRadius: BorderRadius.circular(40)
+                          )
+                      )
+                  ),
                 ),
               ),
             ],
@@ -73,7 +76,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
+                  return const Text('aucune reccete trouvé!');
                 }
                 // By default, show a loading spinner.
                 return const Center(

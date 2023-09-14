@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         const FavoritePage()
       ][_SelectedTab.values.indexOf(_selectedTab)],
       bottomNavigationBar: DotNavigationBar(
-        backgroundColor:const Color.fromARGB(248, 236, 234, 234),
+        backgroundColor: const Color.fromARGB(248, 236, 234, 234),
         currentIndex: _SelectedTab.values.indexOf(_selectedTab),
 
         onTap: _handleIndexChanged,
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             selectedColor: Colors.orange,
           ),
           DotNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: const Icon(Icons.favorite),
             selectedColor: Colors.pink,
           ),
         ],

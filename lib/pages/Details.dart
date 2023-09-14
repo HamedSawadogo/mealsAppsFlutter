@@ -3,6 +3,7 @@ import 'package:recipes/model/Ingredient.dart';
 import 'package:recipes/model/IngredientList.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/pages/MoreMealInfo.dart';
+import 'package:recipes/utils/constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../widgets/FavoriteItem.dart';
@@ -21,7 +22,7 @@ class _DetailsPageState extends State<DetailsPage> {
     RegExp regExp = RegExp(r"(?<=v=)([a-zA-Z0-9_-]+)");
     Match match = regExp.firstMatch(url) as Match;
 
-    if (match != null && match.groupCount >= 1) {
+    if (match.groupCount >= 1) {
       return match.group(1); // Retourne l'ID de la vidéo
     } else {
       return null; // Aucun ID de vidéo trouvé dans l'URL
@@ -32,22 +33,25 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
         title: Text(widget.meal.categorie),
       ),
       body: Column(
         children: [
           Center(
-            child: YoutubePlayer(
-              controller: YoutubePlayerController(
-                initialVideoId: extractVideoIdFromUrl(
-                    widget.meal.youtubeUrl)!, // ID de la vidéo YouTube
-                flags: const YoutubePlayerFlags(
-                  autoPlay: true,
-                  mute: false,
+            child: Hero(
+              tag: widget.meal.id,
+              child: YoutubePlayer(
+                controller: YoutubePlayerController(
+                  initialVideoId: extractVideoIdFromUrl(
+                      widget.meal.youtubeUrl)!, // ID de la vidéo YouTube
+                  flags: const YoutubePlayerFlags(
+                    autoPlay: true,
+                    mute: false,
+                  ),
                 ),
+                showVideoProgressIndicator: true,
               ),
-              showVideoProgressIndicator: true,
             ),
           ),
           const SizedBox(
@@ -59,16 +63,16 @@ class _DetailsPageState extends State<DetailsPage> {
                 flex: 3,
                 child: Text(
                   "Liste des ingredients",
-                  style: TextStyle(fontSize: 22),
+                  style: bigTitle,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     FavoriteItem(meal: widget.meal),
                     Padding(
-                      padding:const EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -76,8 +80,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 MoreMealInfo(meal: widget.meal),
                           ));
                         },
-                        icon:const Icon(Icons.more_vert),
-                        color: Colors.deepOrange,
+                        icon: const Icon(Icons.more_vert),
+                        color: appColor,
                       ),
                     )
                   ],
@@ -95,7 +99,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       final Ingredient ingredient = snapshot.data![index];
-                      return !ingredient.name.isEmpty
+                      return ingredient.name.isNotEmpty
                           ? Card(
                               elevation: 2,
                               shape: RoundedRectangleBorder(
@@ -107,10 +111,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        ingredient.name +
-                                            "-------------------------------",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                        "${ingredient.name}-------------------------------",
+                                        style: titleBold,
                                       ),
                                     ),
                                     Expanded(child: Text(ingredient.mesure))
@@ -122,7 +124,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     },
                   );
                 } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
+                  return const Text("une erreur est survenue!");
                 }
                 return const Center(child: CircularProgressIndicator());
               },

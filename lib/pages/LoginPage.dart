@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/pages/HomePage.dart';
 import 'package:recipes/pages/Register.dart';
+import 'package:recipes/utils/constants.dart';
 import '../widgets/FormInputItem.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _username.dispose();
+    _password.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _username = TextEditingController();
-    TextEditingController _password = TextEditingController();
-
     ///form key
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -36,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   "Connectez vous",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  style: formStyle,
                 ),
                 SizedBox(
                   width: 10,
@@ -44,13 +51,13 @@ class _LoginPageState extends State<LoginPage> {
                 Icon(
                   Icons.account_circle,
                   size: 36,
-                  color: Colors.deepOrange,
+                  color: appColor,
                 )
               ],
             ),
           ),
           Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 children: [
                   FormInputItem(
@@ -78,19 +85,19 @@ class _LoginPageState extends State<LoginPage> {
                                 const EdgeInsets.all(10)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20))),
+                                    borderRadius: BorderRadius.circular(15))),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.deepOrange),
+                                MaterialStateProperty.all(appColor),
                           ),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                            if (formKey.currentState!.validate()) {}
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const HomePage(),
                             ));
                           },
                           label: const Text(
                             "Se connecter",
-                            style: TextStyle(fontSize: 19),
+                            style: title,
                           ),
                           icon: const Icon(
                             Icons.login,
@@ -106,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text(
                         "vous n'avez pas de compte ?",
-                        style: TextStyle(fontSize: 17),
+                        style: title,
                       ),
                       TextButton(
                           onPressed: () {
@@ -114,8 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                               builder: (context) => const RegistrationPage(),
                             ));
                           },
-                          child: const Text("creer un compte",
-                              style: TextStyle(fontSize: 17)))
+                          child: const Text("creer un compte", style: title))
                     ],
                   )
                 ],

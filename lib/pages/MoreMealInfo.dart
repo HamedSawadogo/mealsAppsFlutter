@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:recipes/utils/constants.dart';
 import '../model/Meal.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MoreMealInfo extends StatelessWidget {
   const MoreMealInfo({super.key, required this.meal});
@@ -11,7 +10,7 @@ class MoreMealInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: appColor,
         title: Text(meal.name),
       ),
       body: SingleChildScrollView(
@@ -32,8 +31,7 @@ class MoreMealInfo extends StatelessWidget {
                         child: Text(
                           meal.name,
                           textAlign: TextAlign.start,
-                          style: GoogleFonts.roboto(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: bigBoldTitle,
                         ),
                       ),
                       Row(
@@ -46,13 +44,13 @@ class MoreMealInfo extends StatelessWidget {
                               // launch(meal.websiteLink);
                             },
                             icon: const Icon(Icons.wb_cloudy_rounded),
-                            color: Colors.deepOrange,
+                            color: appColor,
                           ),
                           IconButton(
                               onPressed: () {},
                               icon: const Icon(
                                 Icons.share,
-                                color: Colors.deepOrange,
+                                color: appColor,
                               ))
                         ],
                       ),
@@ -61,13 +59,11 @@ class MoreMealInfo extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(meal.categorie,
-                      style: GoogleFonts.roboto(fontSize: 19)),
+                  child: Text(meal.categorie, style: title),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(meal.description,
-                      style: GoogleFonts.aBeeZee(fontSize: 18)),
+                  child: Text(meal.description, style: subTitle),
                 ),
               ],
             )
