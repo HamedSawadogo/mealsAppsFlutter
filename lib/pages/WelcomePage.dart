@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recipes/controllers/MealController.dart';
 import 'package:recipes/provider/MealsProvider.dart';
 import 'package:recipes/utils/constants.dart';
 import '../model/Meal.dart';
@@ -59,7 +60,7 @@ class WelcomePage extends StatelessWidget {
               ),
               Expanded(
                 child: FutureBuilder(
-                  future: Meal.fetchData("fish"),
+                  future: MealController.fetchData("fish"),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(

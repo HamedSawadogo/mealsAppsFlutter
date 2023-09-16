@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/controllers/MealController.dart';
 import 'package:recipes/model/Meal.dart';
 import 'package:recipes/utils/constants.dart';
 import 'package:recipes/widgets/Drawer.dart';
@@ -29,7 +30,7 @@ class _ReceipesPageState extends State<ReceipesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:const UserDrawer(),
+      drawer: const UserDrawer(),
       appBar: AppBar(
         backgroundColor: appColor,
       ),
@@ -48,23 +49,20 @@ class _ReceipesPageState extends State<ReceipesPage> {
                         });
                       },
                       decoration: InputDecoration(
-                      hintText: "rechercher une recette",
-                      suffixIcon: IconButton(
-                          onPressed: () {},
-                          color: appColor,
-                          icon: const Icon(Icons.search)),
+                          hintText: "rechercher une recette",
+                          suffixIcon: IconButton(
+                              onPressed: () {},
+                              color: appColor,
+                              icon: const Icon(Icons.search)),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40)
-                          )
-                      )
-                  ),
+                              borderRadius: BorderRadius.circular(40)))),
                 ),
               ),
             ],
           ),
           Expanded(
             child: FutureBuilder<List<Meal>>(
-              future: Meal.fetchData(_reciepe.text),
+              future: MealController.fetchData(_reciepe.text),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return GridView.count(
